@@ -31,14 +31,13 @@ router.post('/', function (req, res) {
 
 router.put('/:id', function (req, res) {
     let id = req.params.id;
-    if (!req.body.title) {
-        res.status(400).send('title is required');
+    if (!req.body.text) {
+        res.status(400).send('text is required');
     } else {
         req.app.locals.collection.findOneAndUpdate(
             {_id: new ObjectID(id)},
             {
                 $set: {
-                    title: req.body.title,
                     text: req.body.text
                 }
             }, function (error, result) {
